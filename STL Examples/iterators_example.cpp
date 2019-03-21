@@ -24,6 +24,24 @@ int main()
 		cout << *itV << " ";
 	}
 	cout << endl;
+	// deque
+	deque<int>::iterator itD = d.begin();
+	for(itD = d.begin(); itD != d.end(); ++itD)
+	{
+		cout << *itD << " ";
+	}
+	cout << endl;
+	
+	list<int>::iterator itL = l.begin();
+	for( ; itL != l.end(); ++itL, ++i)
+	{
+		*itL = i;
+	}
+	for(itL = l.begin(); itL != l.end(); ++itL)
+	{
+		cout << *itL << " ";
+	}
+	cout << endl;
 	
 	return 0;
 }
