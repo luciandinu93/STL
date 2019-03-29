@@ -1,7 +1,7 @@
 #include <list>
 #include <iostream>
 
-template<class I>
+template <class I>
 void print(const I& start, const I& end)
 {
 	for(I it = start; it != end; ++it)
@@ -11,25 +11,41 @@ void print(const I& start, const I& end)
 	std::cout << std::endl;
 }
 
+struct DeleteOdd
+{
+	bool operator()(int value)
+	{
+		if(value % 2 > 0)
+		{
+			return true;
+		}
+		return false;
+	}
+};
+
+bool deleteEven(int value)
+{
+	if(value % 2 == 0)
+	{
+		return true;
+	}
+	return false;
+};
+
 int main()
 {
 	int a[] = {1,2,1,3,2,3,4,3,4,7,8,9,6,6,5,8,9,10};
-	
 	std::list<int> l1(a, a+18);
+	std::list<int> l2(a, a+18);
 	print(l1.begin(), l1.end());
+	// remove odd numbers
+	l1.remove_if(DeleteOdd());
+	std::cout << "All odd numbers have been deleted" << std::endl;
+	print(l1.begin(), l1.end());
+	// remove even numbers
+	l2.remove_if(deleteEven);
+	std::cout << "All even numbers have been deleted" << std::endl;
+	print(l2.begin(), l2.end());
 	
-	// remove all '1'
-	l1.remove(1);
-	std::cout << "All '1' deleted" << std::endl;
-	print(l1.begin(), l1.end());
-	
-	// remove all '2'
-	l1.remove(2);
-	std::cout << "All '2' deleted" << std::endl;
-	print(l1.begin(), l1.end());
-	
-	// remove all '3'
-	l1.remove(3);
-	std::cout << "All '3' deleted" << std::endl;
-	print(l1.begin(), l1.end());
+	return 0;
 }
