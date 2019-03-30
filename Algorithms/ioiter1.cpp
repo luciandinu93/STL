@@ -15,4 +15,5 @@ int main()
 	std::sort(coll.begin(), coll.end());
 	
 	std::unique_copy(coll.cbegin(), coll.cend(), std::ostream_iterator<std::string>(std::cout, "\n"));
+	std::cout << std::endl;
 }
